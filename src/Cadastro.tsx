@@ -1,89 +1,78 @@
-import { VStack, Image, Text, Box, FormControl, Input, Button, Link} from 'native-base';
-import {TouchableOpacity} from 'react-native'
+import {Image, Box, Checkbox, ScrollView, Text } from 'native-base';
 import Logo from './assets/Logo.png';
+import { useState} from 'react';
 import { Titulo } from './componentes/Titulo';
+import { Botao } from './componentes/Botao';
+import { EntradaTexto } from './componentes/EntradaTexto';
+import { secoes } from './Utils/CadastroEntradaTexto';
 
-export default function Login() {
-
-  const secoes = [
-    {
-      id: 1,
-      titulo: "Insira alguns dados básicos",
-      entradaTexto: [
-        {
-          id: 1,
-          label: 'Nome',
-          placeholder: 'Digite seu nome completo'
-        },
-        {
-          id: 1,
-          label: 'Email',
-          placeholder: 'Digite seu email completo'
-        }
-      ]
+export default function Cadastro() {
+  // ==========================================SECOES/LISTA
+  const[numSecao, setNumSecao] = useState(0);
+  
+  // ==========================================FUNCOES
+  // Função para quando aperta o botao, avançar para a proxima pagina
+  function avancarSecao(){
+    if(numSecao < secoes.length - 1){
+      setNumSecao(numSecao+1);
     }
-  ]
+  }
 
+  function voltarSecao(){
+    if(numSecao > 0 ){
+      setNumSecao(numSecao-1);
+    }
+  }
+  // =========================================== TSX
   return (
-    <VStack flex={1} alignItems="center" justifyContent="center" p={5}>
-        <Image source={Logo} alt="Logo Voll"/>
+    <ScrollView flex={1} p={5}>
+        <Image source={Logo} alt="Logo Voll" alignSelf="center"/>
 
-        <Titulo 
-          children={'Faça login em sua conta'}>
+        <Titulo>
+            {secoes[numSecao].titulo}
         </Titulo>
-        {/* Inputs */}
+
+        {/* ENTRDA DE TEXTO */}
         <Box>
-          <FormControl mt={3}>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input
-              placeholder='Insira seu endereço de Email'
-              size='lg'
-              w='100%'
-              borderRadius='lg'
-              bgColor='gray.100'
-              shadow={3}
-            />
-          </FormControl>
-
-          <FormControl mt={3}>
-            <FormControl.Label>Senha</FormControl.Label>
-            <Input
-              placeholder='Insira sua senha'
-              size='lg'
-              w='100%'
-              borderRadius='lg'
-              bgColor='gray.100'
-              shadow={3}
-            />
-          </FormControl>
+          {
+            secoes[numSecao]?.entradaTexto?.map(entrada =>{
+              return <EntradaTexto label={entrada.label}
+              placeholder={entrada.placeholder} 
+              key={entrada.id}/>
+            })
+          }
         </Box>
 
-        <Button
-          w='100%'
-          bg='blue.800'
-          mt={10}
-          borderRadius='lg'
-        >
-          Entrar
-        </Button>
-
-        <Link href='https://www.alura.com.br' mt={2}>
-          Esqueceu sua senha?
-        </Link>
-
-        <Box w='100%' mt={8} flexDirection='row' justifyContent='center'>
-          <Text color="blue.500">
-            Ainda não tem cadastro?
+        {/* CHECKBOX */}
+        <Box>
+          <Text color="blue.800" fontWeight="bold"
+            fontSize="md" mt="2" mb={2}>
+            Selecione o plano:
           </Text>
-          <TouchableOpacity>
-            <Text>
-              Faça seu cadastro!
-            </Text>
-          </TouchableOpacity>
+          {
+            secoes[numSecao].checkbox.map(checkbox =>{
+              return <Checkbox key={checkbox.id}
+              value={checkbox.value}>
+                {checkbox.value}
+              </Checkbox>
+            })
+          }
         </Box>
-    </VStack>
+
+        {/* BOTOES */}
+        {/* Verificação para não aparecer na primeira secao */}
+        {numSecao> 0 &&  <Botao onPress={() => voltarSecao()}
+          bgColor='gray.400'
+        >
+          Voltar
+        </Botao>}
+        <Botao onPress={() => avancarSecao()} mt={4} mb={20}>
+          Avançar
+        </Botao>
+
+
+    </ScrollView>
   );
 }
 
-
-// VStack serve como o View
+// O ScrollView permite rolar a tela de cima para baixo

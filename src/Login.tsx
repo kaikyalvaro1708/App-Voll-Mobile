@@ -3,13 +3,13 @@ import {TouchableOpacity} from 'react-native'
 import Logo from './assets/Logo.png';
 import { Titulo } from './componentes/Titulo';
 
-export default function Login() {
+export default function Login({navigation}) {
   return (
     <VStack flex={1} alignItems="center" justifyContent="center" p={5}>
         <Image source={Logo} alt="Logo Voll"/>
 
-        <Titulo 
-          children={'Faça login em sua conta'}>
+        <Titulo>
+          Faça login em sua conta
         </Titulo>
         {/* Inputs */}
         <Box>
@@ -55,7 +55,7 @@ export default function Login() {
           <Text color="blue.500">
             Ainda não tem cadastro?
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
             <Text>
               Faça seu cadastro!
             </Text>
