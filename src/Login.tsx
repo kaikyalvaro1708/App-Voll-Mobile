@@ -43,6 +43,7 @@ export default function Login({navigation}) {
           bg='blue.800'
           mt={10}
           borderRadius='lg'
+          onPress={()=> navigation.navigate('Tabs')}
         >
           Entrar
         </Button>
