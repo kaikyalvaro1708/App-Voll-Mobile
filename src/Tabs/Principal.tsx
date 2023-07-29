@@ -1,8 +1,9 @@
 import React from 'react';
-import { VStack, Text, ScrollView, Image, Box, FormControl, Input } from 'native-base';
+import { VStack, Text, ScrollView, Image, Box, Divider } from 'native-base';
 import { Titulo } from '../componentes/Titulo';
 import { Botao } from '../componentes/Botao';
 import Logo from '../assets/Logo.png';
+import { EntradaTexto } from '../componentes/EntradaTexto';
 
 
 const depoimentos=[
@@ -22,42 +23,51 @@ const depoimentos=[
 
 export default function Principal(){
     return(
-        <ScrollView flex={1}>
-            <VStack>
+        <ScrollView flex={1} bgColor="white">
+            <VStack flex={1} alignItems="flex-start" justifyContent="flex-start" p={5} >
                 <Image source={Logo} alt="Logo da Voll"
-                    mb={5}
+                    mb={10}
                 />
 
                 <Titulo
-                    mb={5}
                     color='blue.500'>
                         Boas-vindas!
                 </Titulo>
 
-                <Box>
-                   <FormControl>
-                        <FormControl.Label>Digite a especialidade</FormControl.Label>
-                        <Input/>
-                   </FormControl>
-
-                   <FormControl>
-                        <FormControl.Label>Digite sua localização</FormControl.Label>
-                        <Input/>
-                   </FormControl>
-
-                   <Botao>Buscar</Botao>
+                <Box width='100%' borderRadius='lg' p={3} mt={10} shadow='1' borderRightRadius='md'>
+                   <EntradaTexto
+                        placeholder='Digite a especialidade'
+                   />
+                   <EntradaTexto
+                        placeholder='Digite sua localização'
+                   />
+                    
+                   <Botao mb={3} mt={3}>Buscar</Botao>
                 </Box>
 
-                <Titulo>Depoimentos</Titulo>
-
-            
-                {depoimentos.map((depoimento, index) => (
-                <Box key={index} bg="gray.100" p={4} rounded="md" mt={4}>
-                    <Text>{depoimento.texto}</Text>
-                    <Text>{depoimento.endereco}</Text>
-                </Box>
-                ))}
-              
+                <Titulo color='blue.800' alignSelf='center'>Depoimentos</Titulo>
+                <VStack space={3} divider={<Divider/>} w='100%'>
+                    {depoimentos.map((depoimento, index) => (
+                    <Box key={index} w='100%' borderRadius='lg' p={4} rounded="md" mt={4}>
+                        <Text 
+                            color='gray.300' 
+                            fontSize='md' 
+                            textAlign='justify'
+                            >
+                            {depoimento.texto}
+                        </Text>
+                        <Text 
+                            color='gray.500' 
+                            fontSize='lg' 
+                            alignSelf='center'
+                            fontWeight='bold'
+                            mt='2'
+                            >
+                        {depoimento.endereco}
+                        </Text>
+                    </Box>
+                    ))}
+                </VStack>
             </VStack>
         </ScrollView>    
     )

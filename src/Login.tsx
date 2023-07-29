@@ -51,7 +51,7 @@ export default function Login({navigation}) {
         <Link href='https://www.alura.com.br' mt={2}>
           Esqueceu sua senha?
         </Link>
-
+      
         <Box w='100%' mt={8} flexDirection='row' justifyContent='center'>
           <Text color="blue.500">
             Ainda não tem cadastro?
