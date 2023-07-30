@@ -53,12 +53,12 @@ export default function Login({navigation}) {
         </Link>
       
         <Box w='100%' mt={8} flexDirection='row' justifyContent='center'>
-          <Text color="blue.500">
+          <Text>
             Ainda não tem cadastro?
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
-            <Text>
-              Faça seu cadastro!
+            <Text color="blue.500">
+            Faça seu cadastro!
             </Text>
           </TouchableOpacity>
         </Box>

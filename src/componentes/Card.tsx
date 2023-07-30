@@ -23,7 +23,7 @@ export function Card ({
     foiAtendido
 }: CardProps){
     return(
-        <VStack w='100%' bg={foiAtendido ? 'blue.100' : 'white'} borderRadius='lg' p={5} shadow='2'>
+        <VStack w='100%' bg={foiAtendido ? 'blue.100' : 'white'} borderRadius='lg' p={5} shadow='2' mb={5}>
             <VStack flexDir='row'>
                 <Avatar source={{uri:foto}}
                     mt={5} size="lg"/>
@@ -35,7 +35,7 @@ export function Card ({
             </VStack>
             <Botao mt={4}>
                 {/* if ternário */}
-                {foiAgendado? 'Cancelar consulta' : 'Agendar consulta'}
+                {foiAgendado? 'Cancelar' : 'Agendar consulta'}
             </Botao>
         </VStack>
     )

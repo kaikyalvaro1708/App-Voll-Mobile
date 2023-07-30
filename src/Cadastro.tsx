@@ -46,12 +46,12 @@ export default function Cadastro() {
         {/* CHECKBOX */}
         <Box>
           <Text color="blue.800" fontWeight="bold"
-            fontSize="md" mt="2" mb={2}>
-            Selecione o plano:
+            fontSize="lg" mt="2" mb={2}>
           </Text>
           {
             secoes[numSecao].checkbox.map(checkbox =>{
-              return <Checkbox key={checkbox.id}
+              return <Checkbox  
+              key={checkbox.id}
               value={checkbox.value}>
                 {checkbox.value}
               </Checkbox>
@@ -62,7 +62,7 @@ export default function Cadastro() {
         {/* BOTOES */}
         {/* Verificação para não aparecer na primeira secao */}
         {numSecao> 0 &&  <Botao onPress={() => voltarSecao()}
-          bgColor='gray.400'
+          bgColor='gray.400' mt={4}
         >
           Voltar
         </Botao>}

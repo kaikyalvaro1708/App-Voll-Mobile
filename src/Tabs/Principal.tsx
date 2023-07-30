@@ -1,9 +1,8 @@
 import React from 'react';
 import { VStack, Text, ScrollView, Image, Box, Divider } from 'native-base';
 import { Titulo } from '../componentes/Titulo';
-import { Botao } from '../componentes/Botao';
 import Logo from '../assets/Logo.png';
-import { EntradaTexto } from '../componentes/EntradaTexto';
+import Procurar from '../componentes/Procurar';
 
 
 const depoimentos=[
@@ -33,17 +32,7 @@ export default function Principal(){
                     color='blue.500'>
                         Boas-vindas!
                 </Titulo>
-
-                <Box width='100%' borderRadius='lg' p={3} mt={10} shadow='1' borderRightRadius='md'>
-                   <EntradaTexto
-                        placeholder='Digite a especialidade'
-                   />
-                   <EntradaTexto
-                        placeholder='Digite sua localização'
-                   />
-                    
-                   <Botao mb={3} mt={3}>Buscar</Botao>
-                </Box>
+                <Procurar></Procurar>
 
                 <Titulo color='blue.800' alignSelf='center'>Depoimentos</Titulo>
                 <VStack space={3} divider={<Divider/>} w='100%'>
